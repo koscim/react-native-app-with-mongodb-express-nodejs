@@ -16,6 +16,8 @@ import {
 import { StackNavigator } from 'react-navigation';
 import HomeScreen from './src/HomeScreen';
 import ChatScreen from './src/ChatScreen';
+import Movies from './src/Movies';
+import Confirmation from './src/Confirmation';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -26,7 +28,9 @@ const instructions = Platform.select({
 
 const SimpleApp = StackNavigator({
   Home: { screen: HomeScreen },
-  Chat: { screen: ChatScreen }
+  Chat: { screen: ChatScreen },
+  MovieIndex: { screen: Movies },
+  Confirmation: { screen: Confirmation }
 });
 
 export default class App extends Component<{}> {
