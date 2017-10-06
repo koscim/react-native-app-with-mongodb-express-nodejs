@@ -14,6 +14,8 @@ import {
   Button
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
+import HomeScreen from './src/HomeScreen';
+import ChatScreen from './src/ChatScreen';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -21,39 +23,6 @@ const instructions = Platform.select({
   android: 'Double tap R on your keyboard to reload,\n' +
     'Shake or press menu button for dev menu',
 });
-
-class HomeScreen extends Component {
-  static navigationOptions = {
-    title: 'Welcome'
-  };
-  render() {
-    const { navigate } = this.props.navigation;
-
-    return (
-      <View>
-        <Text>Hello, Pod App!</Text>
-        <Button
-        onPress={() => navigate('Chat', { user: 'Pumba' })}
-        title='Chat with Timon'
-        />
-      </View>
-    )
-  }
-}
-
-class ChatScreen extends Component {
-  static navigationOptions = ({ navigation }) => ({
-    title: `Chat with ${navigation.state.params.user}`
-  });
-  render() {
-    const { params } = this.props.navigation.state;
-    return (
-      <View>
-        <Text>Chat with {params.user}</Text>
-      </View>
-    )
-  }
-}
 
 const SimpleApp = StackNavigator({
   Home: { screen: HomeScreen },
