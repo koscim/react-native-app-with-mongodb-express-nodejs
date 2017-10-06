@@ -23,7 +23,11 @@ export default class HomeScreen extends Component {
         onPress={() => navigate('Chat', { user: 'ALEX' })}
         title='Chat with Timon'
         />
+        <Button
+          onPress={() => navigate('MovieIndex')}
+          title='Movie Index'
+        />
       </View>
-    )
+    );
   }
 }
