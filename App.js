@@ -18,6 +18,9 @@ import HomeScreen from './src/HomeScreen';
 import ChatScreen from './src/ChatScreen';
 import Movies from './src/Movies';
 import Confirmation from './src/Confirmation';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import { apiMiddleware, reducer } from './src/redux';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -25,6 +28,11 @@ const instructions = Platform.select({
   android: 'Double tap R on your keyboard to reload,\n' +
     'Shake or press menu button for dev menu',
 });
+// Create Redux store
+const store = createStore(reducer, {}, applyMiddleware(apiMiddleware));
+
+// Fetch movie data
+store.dispatch({type: 'GET_MOVIE_DATA'});
 
 const SimpleApp = StackNavigator({
   Home: { screen: HomeScreen },
@@ -36,7 +44,9 @@ const SimpleApp = StackNavigator({
 export default class App extends Component<{}> {
   render() {
     return (
-      <SimpleApp />
+      <Provider store={store}>
+        <SimpleApp />
+      </Provider>
     );
   }
 }
